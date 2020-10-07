@@ -1,1 +1,0 @@
-# risyadriyadi.github.io
