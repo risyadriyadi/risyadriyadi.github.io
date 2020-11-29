@@ -27,20 +27,28 @@ function number_format(number, decimals, dec_point, thousands_sep) {
   return s.join(dec);
 }
 
-// Bar Chart Example
-var ctx = document.getElementById("myBarChart");
-var myBarChart = new Chart(ctx, {
+// Area Chart Example
+var ctx = document.getElementById("ObjekWisata");
+var myLineChart = new Chart(ctx, {
   type: 'bar',
   data: {
     labels: ["Bogor", "Sukabumi", "Cianjur", "Bandung", "Garut", "Tasikmalaya", "Ciamis", "Kuningan", "Cirebon", "Majalengka", "Indramayu", "Subang", "Sumedang",
-              "Purwakarta", "Karawang", "Bekasi", "Bandung Barat", "Pangandaran", "Kota Bogor", "Kota Sukabumi", "Kota Bandung", "Kota Cirebon", "Kota Bekasi", "Kota Depok", "Kota Cimahi"
-               ,"Kota Tasikmalaya", "Kota Banjar"],
+    "Purwakarta", "Karawang", "Bekasi", "Bandung Barat", "Pangandaran", "Kota Bogor", "Kota Sukabumi", "Kota Bandung", "Kota Cirebon", "Kota Bekasi", "Kota Depok", "Kota Cimahi"
+     ,"Kota Tasikmalaya", "Kota Banjar"],
     datasets: [{
-      label: "Jumlah Wisatawan",
-      backgroundColor: "#4e73df",
-      hoverBackgroundColor: "#2e59d9",
-      borderColor: "#4e73df",
-      data: [4215, 5312, 6251, 7841, 9821, 14984],
+      label: "Jumlah Objek Wisata",
+      lineTension: 0.3,
+      backgroundColor: "rgba(78, 115, 223, 0.5)",
+      borderColor: "rgba(78, 115, 223, 1)",
+      pointRadius: 3,
+      pointBackgroundColor: "rgba(78, 115, 223, 1)",
+      pointBorderColor: "rgba(78, 115, 223, 1)",
+      pointHoverRadius: 3,
+      pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
+      pointHoverBorderColor: "rgba(78, 115, 223, 1)",
+      pointHitRadius: 10,
+      pointBorderWidth: 2,
+      data: [80, 6, 82, 194, 204, 17, 143, 35, 125, 155, 5, 28, 47, 38, 84, 15, 134, 103, 23, 8, 308, 17, 7, 24, 6, 11, 2],
     }],
   },
   options: {
@@ -56,21 +64,18 @@ var myBarChart = new Chart(ctx, {
     scales: {
       xAxes: [{
         time: {
-          unit: 'month'
+          unit: 'date'
         },
         gridLines: {
           display: false,
           drawBorder: false
         },
         ticks: {
-          maxTicksLimit: 6
-        },
-        maxBarThickness: 25,
+          maxTicksLimit: 7
+        }
       }],
       yAxes: [{
         ticks: {
-          min: 0,
-          max: 15000,
           maxTicksLimit: 5,
           padding: 10,
           // Include a dollar sign in the ticks
@@ -91,23 +96,25 @@ var myBarChart = new Chart(ctx, {
       display: false
     },
     tooltips: {
+      backgroundColor: "rgb(255,255,255)",
+      bodyFontColor: "#858796",
       titleMarginBottom: 10,
       titleFontColor: '#6e707e',
       titleFontSize: 14,
-      backgroundColor: "rgb(255,255,255)",
-      bodyFontColor: "#858796",
       borderColor: '#dddfeb',
       borderWidth: 1,
       xPadding: 15,
       yPadding: 15,
       displayColors: false,
+      intersect: false,
+      mode: 'index',
       caretPadding: 10,
       callbacks: {
         label: function(tooltipItem, chart) {
           var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-          return datasetLabel + ': $' + number_format(tooltipItem.yLabel);
+          return datasetLabel +" "+ number_format(tooltipItem.yLabel);
         }
       }
-    },
+    }
   }
 });
